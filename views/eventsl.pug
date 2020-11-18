@@ -1,0 +1,31 @@
+html
+  head
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css')
+    body(class='bg-grey-lighter text-base text-grey-darkest font-normal relative bg-gray-100')
+            div(class='bg-gray-900 p-2 flex justify-between items-center')
+                div(class="flex items-center")
+                    a(href="/" class='inline-block p-3 text-gray-400 mr-2 hover:text-gray-100 hover:text-gray-100 transform hover:scale-110 transition ease-in-out duration 300') Home
+                div(class="flex items-center")
+                    a(href="" class="inline-block p-2 bg-gray-400 text-black rounded hover:text-gray-100 transform hover:scale-110 transition ease-in-out duration 300 mr-4") #{req.session.passport.user}
+                    a(href="/logout" class="inline-block p-2 bg-gray-400 text-black rounded hover:text-gray-100 transform hover:scale-110 transition ease-in-out duration 300") Logout
+                    
+            div(class='mx-auto mt-32 flex justify-between items-center')
+                    div(class='mx-auto flex-wrap bg-gray-50 rounded shadow-lg p-8 w-4/6 m-4')
+                        for event in dbevents
+                                div(class="flex justify-between mb-2 grid grid-cols-6 divide-x-reverse")
+                                    a(href=("/events/"+event.dataValues.primekey) inline-block class="object-right m-4 mb-2 col-span-4 bg-transparent ease-in-out duration 300 text-black font-semibold py-2 px-12 border border-black")=event.dataValues.title
+                                    a(id=event.dataValues.primekey class="flex block justify-center text-center w-16 mt-4 mb-2 bg-transparent transform hover:scale-110 transition ease-in-out duration 300 hover:bg-black text-black font-semibold hover:text-white py-2 px-2 border border-black hover:border-transparent rounded-lg transition ease-in-out duration-300")="Signatures: "+event.dataValues.signtures
+                                    script.
+                                        function sign(email, id) {
+                                            (async () => {
+                                                const response = await fetch("events/"+id+"/sign", {
+                                                    method: 'GET'
+                                                })
+
+                                                const data = await response.json();
+                                                document.getElementById(id).innerHTML = "Signatures: " + data["sigs"];
+                                            })()
+                                        }
+                                        
+                                    a(onclick='sign(' + '"' + req.session.passport.user + '"' + ',' + '"' + event.dataValues.primekey + '"' + ')' class="flex block justify-center text-center w-16 mt-4 mb-2 bg-transparent transform hover:scale-110 transition ease-in-out duration 300 hover:bg-black text-black font-semibold hover:text-white py-2 px-2 border border-black hover:border-transparent rounded-lg transition ease-in-out duration-300") Sign
+                                    a(class="flex block justify-center text-center -ml-10 w-16 mt-4 mb-2 bg-transparent transform hover:scale-110 transition ease-in-out duration 300 hover:bg-black text-black font-semibold hover:text-white py-2 px-2 border border-black hover:border-transparent rounded-lg transition ease-in-out duration-300") Report

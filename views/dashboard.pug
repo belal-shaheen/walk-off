@@ -1,0 +1,18 @@
+html
+  head
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css')
+  body(class='bg-grey-lighter text-base text-grey-darkest font-normal relative bg-gray-100')
+      div(class='bg-gray-900 p-2 flex justify-between items-center')
+          div(class="flex items-center")
+              a(href="/" class='inline-block p-3 text-gray-400 mr-2 hover:text-gray-100 hover:text-gray-100 transform hover:scale-110 transition ease-in-out duration 300') Home
+          div(class="flex items-center")
+              a(class="inline-block p-2 bg-gray-400 text-black rounded hover:text-gray-100 transform hover:scale-110 transition ease-in-out duration 300 mr-4") #{req.session.passport.user}
+              a(href="/logout" class="inline-block p-2 bg-gray-400 text-black rounded hover:text-gray-100 transform hover:scale-110 transition ease-in-out duration 300") Logout
+
+      div(class='container mx-auto mt-4 flex items-center px-4 py-4')
+          div(href="" class='mx-auto flex-wrap bg-gray-50 rounded shadow-lg p-8 sm:px-16 sm:py-16 md:px-32 md:py-24 lg:px-32 lg:py-32 xl:py-56 xl:px-64 m-4')
+                      a(href="/add-events" class="p-1/2 inline-block text-center w-full bg-transparent transform hover:scale-110 transition ease-in-out duration 300 hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded-lg transition ease-in-out duration-300") Create an event
+                      div(class="flex justify-between grid gap-3 grid-cols-3 divide-x-reverse sm:grid-flow-col md:grid-flow-col-dense")
+                          a(href='/events' class="inline-block text-center w-full mt-2 bg-transparent transform hover:scale-110 transition ease-in-out duration 300 hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded-lg transition ease-in-out duration-300") Events
+                          a(href="/about" class="inline-block text-center w-full mt-2 bg-transparent transform hover:scale-110 transition ease-in-out duration 300 hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded-lg transition ease-in-out duration-300") About   
+                          a(href="/resources" class="inline-block text-center w-full mt-2 bg-transparent transform hover:scale-110 transition ease-in-out duration 300 hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded-lg transition ease-in-out duration-300") Resources   
